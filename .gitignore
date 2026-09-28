@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+**/build/
+!src/**/build/
+.gradletasknamecache
+gradle-app.setting
+
+# Forge development runs
+/run/
+/run-data/
+
+# Local mod dependencies restored by setup-dev-mods.ps1
+/libs/
+
+# Data generator cache (generated resources remain versioned)
+/src/generated/resources/.cache/
+
+# IntelliJ and other IDEs
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+out/
+bin/
+.classpath
+.project
+.settings/
+
+# Java diagnostics and temporary output
+*.class
+*.log
+*.hprof
+hs_err_pid*
+replay_pid*
+local.properties
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
