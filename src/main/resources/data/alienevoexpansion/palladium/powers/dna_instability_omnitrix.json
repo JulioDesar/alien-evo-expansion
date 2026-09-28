@@ -1,0 +1,17 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.dna_instability"
+  },
+  "icon": {
+    "type": "palladium:texture",
+    "texture": "minecraft:textures/item/echo_shard.png"
+  },
+  "persistent_data": false,
+  "hidden": true,
+  "abilities": {
+    "bridge": {
+      "type": "palladium:dummy",
+      "hidden": true
+    }
+  }
+}

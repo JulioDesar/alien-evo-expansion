@@ -1,0 +1,21 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.dna_instability"
+  },
+  "icon": {
+    "type": "palladium:texture",
+    "texture": "minecraft:textures/item/echo_shard.png"
+  },
+  "persistent_data": true,
+  "hidden": true,
+  "background": "alienevo:textures/gui/power_screen/power_screen.png",
+  "primary_color": "#C62828",
+  "secondary_color": "#212121",
+  "ability_bar_texture": "alienevo:textures/gui/ability_bar/interface.png",
+  "abilities": {
+    "instability": {
+      "type": "alienevoexpansion:dna_instability",
+      "hidden": true
+    }
+  }
+}

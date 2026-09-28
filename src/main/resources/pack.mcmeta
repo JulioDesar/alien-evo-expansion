@@ -1,8 +1,21 @@
 {
   "pack": {
+    "id": "${mod_id}",
     "description": {
       "text": "${mod_id} resources"
     },
-    "pack_format": 15
+    "pack_format": 15,
+    "version": "${mod_version}"
+  },
+  "dependencies": {
+    "common": {
+      "minecraft": ">=1.20.1",
+      "palladium": "*",
+      "kubejs": "*",
+      "alienevo": ">=1.1.2",
+      "aeo": ">=1.0.6",
+      "omni_evo": ">=1.0.0"
+    },
+    "forge": {}
   }
 }

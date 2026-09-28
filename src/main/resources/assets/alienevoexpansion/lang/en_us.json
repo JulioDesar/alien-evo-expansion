@@ -1,4 +1,5 @@
 {
   "mod.alienevoexpansion.name": "Alien Evo Expansion",
-  "mod.alienevoexpansion.description": "An Alien Evolution expansion featuring the Nemetrix, Antitrix, and Albedo's Stabilizer."
+  "mod.alienevoexpansion.description": "An Alien Evolution expansion featuring the Nemetrix, Antitrix, and Albedo's Stabilizer.",
+  "power.alienevoexpansion.dna_instability": "DNA Instability"
 }
