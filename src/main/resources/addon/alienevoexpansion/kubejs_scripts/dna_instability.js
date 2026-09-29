@@ -3,8 +3,16 @@ StartupEvents.registry('palladium:abilities', (event) => {
     const INTERNAL_BRIDGE_POWER_ID = 'alienevoexpansion:dna_instability_omnitrix';
     const NEXT_TRANSFORMATION_TICK = 'alienevoexpansion.dna_instability.next_transformation_tick';
     const CURRENT_ALIEN_POWER = 'alienevoexpansion.dna_instability.current_alien_power';
+    const CURRENT_PHASE = 'alienevoexpansion.dna_instability.current_phase';
+    const PHASE_END_TICK = 'alienevoexpansion.dna_instability.phase_end_tick';
+    const ADDED_UNWORTHY_TAG = 'alienevoexpansion.dna_instability.added_unworthy_tag';
+    const INSTABILITY_PHASE = 'instability';
+    const HUMAN_PHASE = 'human';
     const MIN_TRANSFORMATION_DELAY = 20;
     const MAX_TRANSFORMATION_DELAY = 1200;
+    const MIN_INSTABILITY_DURATION = 3600;
+    const MAX_INSTABILITY_DURATION = 8400;
+    const HUMAN_PHASE_DURATION = 6000;
     const RETRY_DELAY = 20;
 
     event.create('alienevoexpansion:dna_instability')
@@ -14,7 +22,11 @@ StartupEvents.registry('palladium:abilities', (event) => {
 
             configureInstabilityProperties(entity);
             blockOmnitrixAccess(entity);
-            entity.persistentData.putInt(NEXT_TRANSFORMATION_TICK, entity.server.getTickCount());
+
+            const savedPhase = entity.persistentData.getString(CURRENT_PHASE);
+            if (savedPhase !== INSTABILITY_PHASE && savedPhase !== HUMAN_PHASE) {
+                startInstabilityPhase(entity, entity.server.getTickCount());
+            }
         })
         .tick((entity, abilityEntry, abilityHolder, isEnabled) => {
             if (!isEnabled || !entity) return;
@@ -26,12 +38,45 @@ StartupEvents.registry('palladium:abilities', (event) => {
 
             const compatibleAliens = getCompatibleAliens();
             const activeAliens = getActiveAlienPowers(entity, compatibleAliens);
+            const currentTick = entity.server.getTickCount();
+            let currentPhase = entity.persistentData.getString(CURRENT_PHASE);
+
+            if (currentPhase !== INSTABILITY_PHASE && currentPhase !== HUMAN_PHASE) {
+                startInstabilityPhase(entity, currentTick);
+                currentPhase = INSTABILITY_PHASE;
+            }
+
+            let phaseEndTick = entity.persistentData.getInt(PHASE_END_TICK);
+            const maximumPhaseDuration = currentPhase === HUMAN_PHASE
+                ? HUMAN_PHASE_DURATION
+                : MAX_INSTABILITY_DURATION;
+
+            if (phaseEndTick <= 0 || phaseEndTick > currentTick + maximumPhaseDuration) {
+                phaseEndTick = currentTick + (currentPhase === HUMAN_PHASE
+                    ? HUMAN_PHASE_DURATION
+                    : randomBetween(MIN_INSTABILITY_DURATION, MAX_INSTABILITY_DURATION));
+                entity.persistentData.putInt(PHASE_END_TICK, phaseEndTick);
+            }
+
+            if (currentPhase === HUMAN_PHASE) {
+                if (activeAliens.length > 0) {
+                    returnToHumanForm(entity, compatibleAliens);
+                }
+
+                if (phaseEndTick <= currentTick) {
+                    startInstabilityPhase(entity, currentTick);
+                } else {
+                    return;
+                }
+            } else if (phaseEndTick <= currentTick) {
+                startHumanPhase(entity, compatibleAliens, currentTick);
+                return;
+            }
 
             if (activeAliens.length > 0) {
                 palladium.scoreboard.setScore(entity, 'AlienEvo.Timer', 10);
             }
 
-            const currentTick = entity.server.getTickCount();
             let nextTransformationTick = entity.persistentData.getInt(NEXT_TRANSFORMATION_TICK);
 
             if (nextTransformationTick > currentTick + MAX_TRANSFORMATION_DELAY) {
@@ -49,17 +94,19 @@ StartupEvents.registry('palladium:abilities', (event) => {
         .lastTick((entity, abilityEntry, abilityHolder, isEnabled) => {
             if (!entity) return;
 
-            removeActiveAlienPowers(entity, getCompatibleAliens());
+            returnToHumanForm(entity, getCompatibleAliens());
             blockOmnitrixAccess(entity);
 
-            entity.tags.remove('AlienEvo.Transformation');
             entity.persistentData.remove(NEXT_TRANSFORMATION_TICK);
             entity.persistentData.remove(CURRENT_ALIEN_POWER);
-            entity.persistentData.remove('alienevo.current_namespace');
-            entity.persistentData.remove('alienevo.current_path');
+            entity.persistentData.remove(CURRENT_PHASE);
+            entity.persistentData.remove(PHASE_END_TICK);
 
-            palladium.scoreboard.setScore(entity, 'AlienEvo.Timer', 0);
-            palladium.setProperty(entity, 'omnitrix_cycle', 0);
+            if (entity.persistentData.getBoolean(ADDED_UNWORTHY_TAG)) {
+                entity.tags.remove('AlienEvo.Unworthy');
+            }
+            entity.persistentData.remove(ADDED_UNWORTHY_TAG);
+
             palladium.setProperty(entity, 'watch', 'default');
             palladium.setProperty(entity, 'watch_namespace', 'alienevo');
             palladium.setProperty(entity, 'badge', 'prototype');
@@ -69,8 +116,39 @@ StartupEvents.registry('palladium:abilities', (event) => {
             palladium.scoreboard.setScore(entity, 'AlienEvo.CoreTop', 0);
             palladium.scoreboard.setScore(entity, 'AlienEvo.DialInner', 0);
             palladium.scoreboard.setScore(entity, 'AlienEvo.DialOuter', 0);
-            palladium.superpowers.addSuperpower(entity, new ResourceLocation('alienevo:transform_bubble'));
         });
+
+    function startInstabilityPhase(entity, currentTick) {
+        entity.persistentData.putString(CURRENT_PHASE, INSTABILITY_PHASE);
+        entity.persistentData.putInt(
+            PHASE_END_TICK,
+            currentTick + randomBetween(MIN_INSTABILITY_DURATION, MAX_INSTABILITY_DURATION)
+        );
+        entity.persistentData.putInt(NEXT_TRANSFORMATION_TICK, currentTick);
+    }
+
+    function startHumanPhase(entity, compatibleAliens, currentTick) {
+        entity.persistentData.putString(CURRENT_PHASE, HUMAN_PHASE);
+        entity.persistentData.putInt(PHASE_END_TICK, currentTick + HUMAN_PHASE_DURATION);
+        entity.persistentData.remove(NEXT_TRANSFORMATION_TICK);
+        returnToHumanForm(entity, compatibleAliens);
+    }
+
+    function returnToHumanForm(entity, compatibleAliens) {
+        removeActiveAlienPowers(entity, compatibleAliens);
+        entity.tags.remove('AlienEvo.Transformation');
+        entity.persistentData.remove(CURRENT_ALIEN_POWER);
+        entity.persistentData.remove('alienevo.current_namespace');
+        entity.persistentData.remove('alienevo.current_path');
+
+        palladium.scoreboard.setScore(entity, 'AlienEvo.Timer', 0);
+        palladium.setProperty(entity, 'omnitrix_cycle', 0);
+        palladium.superpowers.addSuperpower(entity, new ResourceLocation('alienevo:transform_bubble'));
+    }
+
+    function randomBetween(minimum, maximum) {
+        return minimum + Math.floor(Math.random() * (maximum - minimum + 1));
+    }
 
     function configureInstabilityProperties(entity) {
         palladium.setProperty(entity, 'watch', 'dna_instability');
@@ -88,6 +166,11 @@ StartupEvents.registry('palladium:abilities', (event) => {
     }
 
     function blockOmnitrixAccess(entity) {
+        if (!entity.tags.contains('AlienEvo.Unworthy')) {
+            entity.tags.add('AlienEvo.Unworthy');
+            entity.persistentData.putBoolean(ADDED_UNWORTHY_TAG, true);
+        }
+
         var blockedPowers = [];
         var powers = palladium.powers.getPowerIds(entity);
 
@@ -103,8 +186,12 @@ StartupEvents.registry('palladium:abilities', (event) => {
                 if (powerPath.includes('omnitrix') ||
                     powerPath === 'normal_watch' ||
                     powerPath === 'normal_watch_item' ||
+                    lowerPowerId === 'alienevo:qc' ||
                     lowerPowerId === 'alienevo:quick_change' ||
+                    lowerPowerId === 'aeo:battery' ||
                     lowerPowerId === 'aeo:randomizer' ||
+                    lowerPowerId === 'omni_evo:ult_ability' ||
+                    lowerPowerId.startsWith('omni_evo_ultimates:') ||
                     lowerPowerId === INTERNAL_BRIDGE_POWER_ID) {
                     blockedPowers.push(powerId);
                 }
@@ -119,6 +206,7 @@ StartupEvents.registry('palladium:abilities', (event) => {
         entity.tags.remove('AlienEvo.MasterControl');
         entity.tags.remove('AlienEvo.MasterControlAnim');
         entity.tags.remove('Omniverse.Randomizer');
+        entity.tags.remove('alienevo.ultimate');
     }
 
     function getCompatibleAliens() {
@@ -231,8 +319,7 @@ StartupEvents.registry('palladium:abilities', (event) => {
             'playsound alienevo:randomized master ' + username + ' ' + entity.x + ' ' + entity.y + ' ' + entity.z
         );
 
-        var delay = MIN_TRANSFORMATION_DELAY +
-            Math.floor(Math.random() * (MAX_TRANSFORMATION_DELAY - MIN_TRANSFORMATION_DELAY + 1));
+        var delay = randomBetween(MIN_TRANSFORMATION_DELAY, MAX_TRANSFORMATION_DELAY);
         entity.persistentData.putInt(NEXT_TRANSFORMATION_TICK, currentTick + delay);
     }
 });

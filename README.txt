@@ -23,3 +23,8 @@ Enable the invisible DNA instability state for a player:
 
 Disable it and return the player to human form:
 `/superpower remove alienevoexpansion:dna_instability <player>`
+
+While enabled, the state alternates between 3-7 minutes of DNA instability
+and 5 minutes in human form. During instability, the player changes into a
+random compatible alien every 1-60 seconds. Omnitrix access remains blocked
+during both phases.
