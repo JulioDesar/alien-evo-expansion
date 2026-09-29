@@ -1,0 +1,50 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.omniverse_right_wrist"
+  },
+  "icon": {
+    "type": "palladium:item",
+    "item": "alienevo:omniverse_omnitrix"
+  },
+  "hidden": true,
+  "abilities": {
+    "keep_right_wrist": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players set @s AEO.ArmPreference 2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "aeo:omniverse_omnitrix"
+          }
+        ]
+      }
+    },
+    "remove_after_decoupling": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard players set @s AEO.ArmPreference 1",
+        "superpower remove alienevoexpansion:omniverse_right_wrist @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "AlienEvo.Unworthy"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

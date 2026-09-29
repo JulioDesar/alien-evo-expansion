@@ -1,0 +1,100 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.omniverse_omnitrix_offhand_bridge"
+  },
+  "icon": {
+    "type": "palladium:texture",
+    "texture": "alienevo:textures/gui/prototype/omnitrix.png"
+  },
+  "hidden": true,
+  "ability_bar_texture": "alienevo:textures/gui/bars/omnitrix_bar.png",
+  "abilities": {
+    "apply_omnitrix": {
+      "type": "aeo:couple_omniverse",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "dna_bond"
+          }
+        ]
+      }
+    },
+    "dna_bond": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard objectives add AlienEvo.BasePrimary dummy",
+        "scoreboard objectives add AlienEvo.BaseSecondary dummy",
+        "scoreboard objectives add AlienEvo.BaseTertiary dummy",
+        "scoreboard objectives add AlienEvo.Buttons dummy",
+        "scoreboard objectives add AlienEvo.CoreSide dummy",
+        "scoreboard objectives add AlienEvo.CoreTop dummy",
+        "scoreboard objectives add AlienEvo.DialInner dummy",
+        "scoreboard objectives add AlienEvo.DialInner dummy",
+        "scoreboard objectives add AlienEvo.DialOuter dummy",
+        "scoreboard objectives add AlienEvo.Tubes dummy",
+        "scoreboard objectives add AlienEvo.10kStage dummy",
+        "scoreboard objectives add AlienEvo.10kPhase dummy",
+        "scoreboard objectives add AEO.Spikes dummy",
+        "scoreboard objectives add AEO.Faceplate dummy",
+        "scoreboard objectives add AEO.Recharge dummy",
+        "scoreboard objectives add AEO.FaceCheck dummy",
+        "scoreboard objectives add AEO.AirBreather dummy",
+        "scoreboard objectives add AEO.AirBreatherSlot dummy",
+        "scoreboard objectives add AEO.Suit dummy",
+        "scoreboard objectives add AEO.SuitSlot dummy",
+        "scoreboard objectives add AEO.Battery dummy",
+        "scoreboard objectives add AEO.BatterySlot dummy",
+        "scoreboard objectives add AEO.BatteryDisplay dummy",
+        "scoreboard objectives add AEO.BatteryDisplaySlot dummy",
+        "scoreboard objectives add AEO.RGB dummy",
+        "scoreboard objectives add AEO.RGBSlot dummy",
+        "scoreboard objectives add AEO.Mistransform dummy",
+        "scoreboard objectives add AEO.MistransformSlot dummy",
+        "scoreboard objectives add AEO.NoMistransform dummy",
+        "scoreboard objectives add AEO.NoMistransformSlot dummy",
+        "scoreboard objectives add AEO.Battery_Upgrade dummy",
+        "scoreboard objectives add AEO.Battery_UpgradeSlot dummy",
+        "scoreboard objectives add AEO.TimeIn dummy",
+        "scoreboard objectives add AEO.IdleRecharge dummy",
+        "scoreboard objectives add AEO.ArmPreference dummy",
+        "scoreboard objectives add AEO.UniformSelection dummy",
+        "scoreboard players set @s AlienEvo.CoreSide 1",
+        "scoreboard players set @s AlienEvo.CoreTop 1",
+        "scoreboard players set @s AlienEvo.DialInner 4",
+        "scoreboard players set @s AlienEvo.DialOuter 4",
+        "scoreboard players set @s AEO.ArmPreference 2",
+        "scoreboard players set @s AEO.IdleRecharge 0",
+        "scoreboard players set @s AEO.Suit 0",
+        "scoreboard players set @s AEO.SuitSlot 0",
+        "scoreboard players set @s AEO.AirBreather 0",
+        "scoreboard players set @s AEO.AirBreatherSlot 0",
+        "scoreboard players set @s AEO.Battery 0",
+        "scoreboard players set @s AEO.BatterySlot 0",
+        "scoreboard players set @s AEO.BatteryDisplay 0",
+        "scoreboard players set @s AEO.BatteryDisplaySlot 0",
+        "scoreboard players set @s AEO.RGB 0",
+        "scoreboard players set @s AEO.RGBSlot 0",
+        "scoreboard players set @s AEO.Mistransform 0",
+        "scoreboard players set @s AEO.MistransformSlot 0",
+        "scoreboard players set @s AEO.NoMistransform 0",
+        "scoreboard players set @s AEO.NoMistransformSlot 0",
+        "scoreboard players set @s AEO.UniformSelection 1",
+        "scoreboard players set @s AEO.Battery_Upgrade 0",
+        "scoreboard players set @s AEO.Battery_UpgradeSlot 0",
+        "playsound alienevo:omniverse_equip master @s ~ ~ ~",
+        "superpower add aeo:omniverse_omnitrix @s",
+        "superpower add aeo:battery @s",
+        "superpower add alienevo:qc @s",
+        "superpower add alienevo:quick_change @s",
+        "superpower add alienevoexpansion:omniverse_right_wrist @s",
+        "superpower remove alienevoexpansion:omniverse_omnitrix_offhand_bridge @s"
+      ]
+    }
+  }
+}

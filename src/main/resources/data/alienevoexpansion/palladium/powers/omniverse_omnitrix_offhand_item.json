@@ -1,0 +1,60 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.omniverse_omnitrix_offhand_item"
+  },
+  "icon": {
+    "type": "palladium:item",
+    "item": "alienevo:omniverse_omnitrix"
+  },
+  "hidden": true,
+  "abilities": {
+    "prepare_equipping": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "tag @s remove AlienEvoExpansion.OffhandEquip",
+        "execute unless data entity @s SelectedItem.id run tag @s add AlienEvoExpansion.OffhandEquip",
+        "execute if entity @s[tag=AlienEvoExpansion.OffhandEquip] run scoreboard objectives add AEO.ArmPreference dummy",
+        "execute if entity @s[tag=AlienEvoExpansion.OffhandEquip] run scoreboard players set @s AEO.ArmPreference 2",
+        "execute if entity @s[tag=AlienEvoExpansion.OffhandEquip] run item replace entity @s weapon.mainhand from entity @s weapon.offhand",
+        "execute if entity @s[tag=AlienEvoExpansion.OffhandEquip] run item replace entity @s weapon.offhand with minecraft:air",
+        "execute if entity @s[tag=AlienEvoExpansion.OffhandEquip] run superpower add alienevoexpansion:omniverse_omnitrix_offhand_bridge @s",
+        "tag @s remove AlienEvoExpansion.OffhandEquip"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "key_type": "right_click"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "aeo:omniverse_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "alienevo:prototype_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "AlienEvo.Unworthy"
+                  },
+                  {
+                    "type": "alienevo:is_alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

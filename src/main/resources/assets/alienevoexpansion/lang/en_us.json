@@ -1,5 +1,8 @@
 {
   "mod.alienevoexpansion.name": "Alien Evo Expansion",
   "mod.alienevoexpansion.description": "An Alien Evolution expansion featuring the Nemetrix, Antitrix, and Albedo's Stabilizer.",
-  "power.alienevoexpansion.dna_instability": "DNA Instability"
+  "power.alienevoexpansion.dna_instability": "DNA Instability",
+  "power.alienevoexpansion.omniverse_omnitrix_offhand_item": "Off-Hand Omnitrix Equipment",
+  "power.alienevoexpansion.omniverse_omnitrix_offhand_bridge": "Off-Hand Omnitrix Equipment Bridge",
+  "power.alienevoexpansion.omniverse_right_wrist": "Right-Wrist Omnitrix"
 }
