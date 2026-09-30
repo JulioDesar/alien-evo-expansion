@@ -35,7 +35,6 @@
         "scoreboard objectives add AlienEvo.CoreSide dummy",
         "scoreboard objectives add AlienEvo.CoreTop dummy",
         "scoreboard objectives add AlienEvo.DialInner dummy",
-        "scoreboard objectives add AlienEvo.DialInner dummy",
         "scoreboard objectives add AlienEvo.DialOuter dummy",
         "scoreboard objectives add AlienEvo.Tubes dummy",
         "scoreboard objectives add AlienEvo.10kStage dummy",

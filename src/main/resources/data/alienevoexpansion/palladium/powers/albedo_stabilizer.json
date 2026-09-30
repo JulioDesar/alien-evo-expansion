@@ -1,0 +1,23 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.omniverse_omnitrix"
+  },
+  "icon": {
+    "type": "palladium:item",
+    "item": "alienevoexpansion:albedo_stabilizer"
+  },
+  "hidden": true,
+  "abilities": {
+    "migrate_stabilizer": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [],
+      "first_tick_commands": [
+        "superpower add alienevoexpansion:omniverse_omnitrix @s",
+        "superpower add alienevoexpansion:stabilizer_quick_wheel @s",
+        "superpower remove alienevoexpansion:albedo_stabilizer @s"
+      ]
+    }
+  }
+}

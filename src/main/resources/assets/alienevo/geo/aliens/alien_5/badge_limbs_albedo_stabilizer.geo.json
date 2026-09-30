@@ -1,0 +1,57 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.greymatter_gecko",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "armorLeftArm",
+					"pivot": [1.49999, 25.99992, 0.45]
+				},
+				{
+					"name": "armorRightArm",
+					"pivot": [-1.49998, 25.99992, 0.45]
+				},
+				{
+					"name": "armorLeftLeg",
+					"pivot": [0.69999, 22.52495, 0.25]
+				},
+				{
+					"name": "armorRightLeg",
+					"pivot": [-0.69999, 22.52495, 0.25]
+				},
+				{
+					"name": "armorBody",
+					"pivot": [0, 26.99991, -0.25],
+					"cubes": [
+						{
+							"origin": [-0.625, 24.375, -0.75],
+							"size": [1.25, 1.25, 0.75],
+							"pivot": [0.5, 24.5, -0.75],
+							"rotation": [-2.5, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [8, 8]},
+								"east": {"uv": [12, 0], "uv_size": [1, 2]},
+								"south": {"uv": [13, 0], "uv_size": [2, 2]},
+								"west": {"uv": [11, 0], "uv_size": [1, 2]},
+								"up": {"uv": [9, 0], "uv_size": [2, 1]},
+								"down": {"uv": [9, 2], "uv_size": [1, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "armorHead",
+					"pivot": [0, 27, -0.25]
+				}
+			]
+		}
+	]
+}

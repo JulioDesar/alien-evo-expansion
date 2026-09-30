@@ -1,0 +1,434 @@
+{
+  "name": { "translate": "power.alienevoexpansion.omniverse_omnitrix" },
+  "icon": {
+    "type": "palladium:item",
+    "item": "alienevoexpansion:albedo_stabilizer"
+  },
+  "persistent_data": true,
+  "hidden": false,
+  "background": "alienevo:textures/gui/power_screen/power_screen.png",
+  "primary_color": "#e3003e",
+  "secondary_color": "#1a1a1a",
+  "ability_bar_texture": "#aeo:ov/omnitrix_bar",
+  "abilities": {
+    "setup": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [],
+      "first_tick_commands": [
+        "scoreboard objectives add AlienEvo.Slot dummy",
+        "scoreboard objectives add AlienEvo.Playlist dummy",
+        "scoreboard objectives add AlienEvo.Timer dummy",
+        "scoreboard objectives add AlienEvo.SlotS dummy",
+        "scoreboard players add @s AlienEvo.SlotS 0",
+        "scoreboard players add @s AlienEvo.Timer 0"
+      ]
+    },
+    "render_stabilizer": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "aeo:completed_omnitrix",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "minecraft:invisibility"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "quick_change": {
+      "type": "palladium:ability_wheel",
+      "icon": "#alienevo:detransform",
+      "disable_mouse_scrolling": true,
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.select_alien" },
+      "disable_center_icon": true,
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "texture": "#aeo:ov/quick_change_wheel",
+      "abilities": [
+        "alien_slot_1",
+        "alien_slot_2",
+        "alien_slot_3",
+        "alien_slot_4",
+        "alien_slot_5",
+        "alien_slot_6",
+        "alien_slot_7",
+        "alien_slot_8",
+        "alien_slot_9",
+        "alien_slot_10"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "settings_menu"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "alien_slot_1": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [1] },
+      "target_slot": 1,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_1",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_2": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [2] },
+      "target_slot": 2,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_2",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_3": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [3] },
+      "target_slot": 3,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_3",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_4": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [4] },
+      "target_slot": 4,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_4",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_5": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [5] },
+      "target_slot": 5,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_5",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_6": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [6] },
+      "target_slot": 6,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_6",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_7": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [7] },
+      "target_slot": 7,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_7",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_8": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [8] },
+      "target_slot": 8,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_8",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_9": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [9] },
+      "target_slot": 9,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_9",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "alien_slot_10": {
+      "type": "alienevo:omnitrix_transform_slot",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.alien_slot", "with": [10] },
+      "target_slot": 10,
+      "hidden": true,
+      "icon": "#alienevo:alien_sel_slot_10",
+      "conditions": { "enabling": { "type": "palladium:ability_wheel" } }
+    },
+    "playlist_next": {
+      "type": "alienevo:omnitrix_cycle_playlists",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "cycle_direction": "right",
+      "property": "omnitrix_cycle",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "needs_empty_hand": false,
+            "key_type": "scroll_up"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "quick_change"
+          }
+        ]
+      }
+    },
+    "playlist_previous": {
+      "type": "alienevo:omnitrix_cycle_playlists",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "cycle_direction": "left",
+      "property": "omnitrix_cycle",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "needs_empty_hand": false,
+            "key_type": "scroll_down"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "quick_change"
+          }
+        ]
+      }
+    },
+    "settings_menu": {
+      "type": "palladium:animation_timer",
+      "icon": "#aeo:ov/omnitrix_main",
+      "max_value": 10,
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.settings" },
+      "bar_color": "red",
+      "list_index": 1,
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "quick_change"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "settings_menu_open": {
+      "type": "palladium:animation_timer",
+      "icon": "#aeo:ov/omnitrix_settings",
+      "max_value": 3,
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.toggle_lid" },
+      "bar_color": "red",
+      "list_index": 0,
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "settings_menu",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          }
+        ]
+      }
+    },
+    "open_lid": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "aeo:completed_omnitrix",
+      "controller": "piss",
+      "animation_trigger": "settings_trigger",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "settings_menu_open"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "settings_menu_open",
+            "property": "value",
+            "min": 3,
+            "max": 3
+          }
+        ]
+      }
+    },
+    "close_lid": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "aeo:completed_omnitrix",
+      "controller": "piss",
+      "animation_trigger": "settings_trigger_close",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "settings_menu_open",
+            "property": "value",
+            "min": 2,
+            "max": 2
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "settings_menu_open"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "both_hands": {
+      "type": "palladium:show_both_arms",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "settings_menu",
+            "property": "value",
+            "min": 1,
+            "max": 10
+          }
+        ]
+      }
+    },
+    "remove_stabilizer": {
+      "type": "palladium:command",
+      "icon": "alienevo:textures/gui/prototype/decouple.png",
+      "title": { "translate": "ability.alienevoexpansion.stabilizer.remove" },
+      "bar_color": "red",
+      "list_index": 2,
+      "hidden": true,
+      "hidden_in_bar": false,
+      "commands": [],
+      "first_tick_commands": [
+        "give @s alienevoexpansion:albedo_stabilizer",
+        "superpower remove alienevoexpansion:stabilizer_quick_wheel @s",
+        "tag @s remove AlienEvo.Unworthy",
+        "superpower remove alienevoexpansion:omniverse_omnitrix @s",
+        "playsound minecraft:item.armor.equip_leather master @s ~ ~ ~"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "settings_menu",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          }
+        ]
+      }
+    },
+    "empty_slot_4": {
+      "type": "palladium:dummy",
+      "bar_color": "red",
+      "list_index": 3,
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:false"
+          }
+        ]
+      }
+    },
+    "empty_slot_5": {
+      "type": "palladium:dummy",
+      "bar_color": "red",
+      "list_index": 4,
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:false"
+          }
+        ]
+      }
+    }
+  }
+}

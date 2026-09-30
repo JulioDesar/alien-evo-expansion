@@ -1,0 +1,41 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.Diamondhead",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "armorHead",
+					"pivot": [0, 30.35, 0]
+				},
+				{
+					"name": "armorBody",
+					"pivot": [0, 30.35, 0]
+				},
+				{
+					"name": "armorLeftArm",
+					"pivot": [6.5, 26, 0.5]
+				},
+				{
+					"name": "armorRightArm",
+					"pivot": [-6.5, 26, 0.5]
+				},
+				{
+					"name": "armorLeftLeg",
+					"pivot": [2.575, 15.275, 1.5]
+				},
+				{
+					"name": "armorRightLeg",
+					"pivot": [-2.575, 15.275, 1.5]
+				}
+			]
+		}
+	]
+}

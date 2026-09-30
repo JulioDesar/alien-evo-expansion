@@ -1,6 +1,8 @@
 StartupEvents.registry('palladium:abilities', (event) => {
     const STATE_POWER_ID = 'alienevoexpansion:dna_instability';
-    const INTERNAL_BRIDGE_POWER_ID = 'alienevoexpansion:dna_instability_omnitrix';
+    const STABILIZER_MAIN_POWER_ID = 'alienevoexpansion:omniverse_omnitrix';
+    const LEGACY_STABILIZER_MAIN_POWER_ID = 'alienevoexpansion:stabilizer_omnitrix';
+    const STABILIZER_WHEEL_POWER_ID = 'alienevoexpansion:stabilizer_quick_wheel';
     const NEXT_TRANSFORMATION_TICK = 'alienevoexpansion.dna_instability.next_transformation_tick';
     const CURRENT_ALIEN_POWER = 'alienevoexpansion.dna_instability.current_alien_power';
     const CURRENT_PHASE = 'alienevoexpansion.dna_instability.current_phase';
@@ -20,6 +22,7 @@ StartupEvents.registry('palladium:abilities', (event) => {
         .firstTick((entity, abilityEntry, abilityHolder, isEnabled) => {
             if (!isEnabled || !entity) return;
 
+            global.configureAlbedoEyes(entity);
             configureInstabilityProperties(entity);
             blockOmnitrixAccess(entity);
 
@@ -30,6 +33,10 @@ StartupEvents.registry('palladium:abilities', (event) => {
         })
         .tick((entity, abilityEntry, abilityHolder, isEnabled) => {
             if (!isEnabled || !entity) return;
+
+            if (abilityUtil.hasPower(entity, STABILIZER_WHEEL_POWER_ID)) {
+                return;
+            }
 
             configureInstabilityProperties(entity);
             blockOmnitrixAccess(entity);
@@ -94,6 +101,7 @@ StartupEvents.registry('palladium:abilities', (event) => {
         .lastTick((entity, abilityEntry, abilityHolder, isEnabled) => {
             if (!entity) return;
 
+            global.restoreAlbedoEyes(entity, STABILIZER_WHEEL_POWER_ID);
             returnToHumanForm(entity, getCompatibleAliens());
             blockOmnitrixAccess(entity);
 
@@ -181,7 +189,10 @@ StartupEvents.registry('palladium:abilities', (event) => {
                 var separatorIndex = lowerPowerId.indexOf(':');
                 var powerPath = separatorIndex >= 0 ? lowerPowerId.substring(separatorIndex + 1) : lowerPowerId;
 
-                if (lowerPowerId === STATE_POWER_ID) continue;
+                if (lowerPowerId === STATE_POWER_ID ||
+                    lowerPowerId === STABILIZER_MAIN_POWER_ID ||
+                    lowerPowerId === LEGACY_STABILIZER_MAIN_POWER_ID ||
+                    lowerPowerId === STABILIZER_WHEEL_POWER_ID) continue;
 
                 if (powerPath.includes('omnitrix') ||
                     powerPath === 'normal_watch' ||
@@ -191,8 +202,7 @@ StartupEvents.registry('palladium:abilities', (event) => {
                     lowerPowerId === 'aeo:battery' ||
                     lowerPowerId === 'aeo:randomizer' ||
                     lowerPowerId === 'omni_evo:ult_ability' ||
-                    lowerPowerId.startsWith('omni_evo_ultimates:') ||
-                    lowerPowerId === INTERNAL_BRIDGE_POWER_ID) {
+                    lowerPowerId.startsWith('omni_evo_ultimates:')) {
                     blockedPowers.push(powerId);
                 }
             }

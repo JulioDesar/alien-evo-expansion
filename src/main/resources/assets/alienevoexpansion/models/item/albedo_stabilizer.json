@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "alienevo:item/omniverse_omnitrix",
+    "layer1": "alienevo:item/omniverse_omnitrix_tert_1",
+    "layer2": "alienevo:item/omniverse_omnitrix_tert_2",
+    "layer3": "alienevo:item/omniverse_omnitrix_tert_3",
+    "layer4": "alienevo:item/omniverse_omnitrix_tert_4"
+  }
+}
