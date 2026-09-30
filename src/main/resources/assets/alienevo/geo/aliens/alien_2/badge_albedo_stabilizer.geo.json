@@ -1,0 +1,58 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.wildmutt_gecko_badge",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "armorHead",
+					"pivot": [0, 17.89328, -11.25111]
+				},
+				{
+					"name": "armorBody",
+					"pivot": [0, 17.8933, -11.2511],
+					"cubes": [
+						{
+							"origin": [-2, 10.75, -8],
+							"size": [4, 2, 4],
+							"inflate": 0,
+							"pivot": [0, 12.25, -6],
+							"rotation": [5, 0, 0],
+							"uv": {
+								"north": {"uv": [13, 0], "uv_size": [-2, 1]},
+								"east": {"uv": [11, 0], "uv_size": [-2, 1]},
+								"south": {"uv": [11, 1], "uv_size": [-2, 1]},
+								"west": {"uv": [13, 1], "uv_size": [-2, 1]},
+								"up": {"uv": [13, 0], "uv_size": [2, 2]},
+								"down": {"uv": [0, 8], "uv_size": [8, -8]}
+							}
+						}
+					]
+				},
+				{
+					"name": "armorLeftLeg",
+					"pivot": [6, 15, 13]
+				},
+				{
+					"name": "armorRightLeg",
+					"pivot": [-6, 15, 13]
+				},
+				{
+					"name": "armorLeftArm",
+					"pivot": [6.775, 18.7, -3.3625]
+				},
+				{
+					"name": "armorRightArm",
+					"pivot": [-6.775, 18.7, -3.3625]
+				}
+			]
+		}
+	]
+}

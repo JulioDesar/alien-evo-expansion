@@ -1,0 +1,43 @@
+{
+  "name": {
+    "translate": "power.alienevoexpansion.omniverse_omnitrix"
+  },
+  "icon": {
+    "type": "palladium:item",
+    "item": "alienevoexpansion:albedo_stabilizer"
+  },
+  "hidden": true,
+  "abilities": {
+    "state": {
+      "type": "alienevoexpansion:stabilizer_controller",
+      "hidden": true,
+      "hidden_in_bar": true
+    },
+    "remove_without_instability": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [],
+      "first_tick_commands": [
+        "give @s alienevoexpansion:albedo_stabilizer",
+        "tag @s remove AlienEvo.Unworthy",
+        "superpower remove alienevoexpansion:omniverse_omnitrix @s",
+        "playsound minecraft:item.armor.equip_leather master @s ~ ~ ~",
+        "superpower remove alienevoexpansion:stabilizer_quick_wheel @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "alienevoexpansion:dna_instability"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

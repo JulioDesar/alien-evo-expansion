@@ -1,0 +1,80 @@
+{
+  "name": {
+    "translate": "item.alienevoexpansion.albedo_stabilizer"
+  },
+  "icon": {
+    "type": "palladium:item",
+    "item": "alienevoexpansion:albedo_stabilizer"
+  },
+  "hidden": true,
+  "abilities": {
+    "equip_stabilizer": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "superpower add alienevoexpansion:omniverse_omnitrix @s",
+        "superpower add alienevoexpansion:stabilizer_quick_wheel @s",
+        "item replace entity @s weapon.mainhand with minecraft:air",
+        "playsound minecraft:item.armor.equip_leather master @s ~ ~ ~"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "key_type": "right_click"
+          },
+          {
+            "type": "palladium:has_power",
+            "power": "alienevoexpansion:dna_instability"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "alienevo:prototype_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "alienevo:recal_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "alienevo:ult_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "aeo:omniverse_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "aeo:normal_watch"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "alienevoexpansion:omniverse_omnitrix"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "alienevoexpansion:stabilizer_quick_wheel"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alienevo.ultimate"
+                  },
+                  {
+                    "type": "alienevo:is_alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

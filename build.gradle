@@ -233,6 +233,21 @@ publishing {
     }
 }
 
+tasks.register('testStabilizerScripts', JavaExec) {
+    group = 'verification'
+    description = 'Checks stabilizer scripts in the bundled Rhino engine.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.dezaru.alienevoexpansion.StabilizerScriptRegressionTest'
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.named('check').configure {
+    dependsOn tasks.named('testStabilizerScripts')
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
